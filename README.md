@@ -1,4 +1,6 @@
 # Sports-Club
+Details: I created this project using ASP .Net MVC. In this project I have done CRUD using Database first approach, One to many relationship database, Packeges:EntityFramework v7,PagedList.Mvc,FontAwesome, jquery, ajax,Microsoft.jQuery.Unobtrusive.Validation .
+
 <img width="924" alt="Screenshot_2" src="https://github.com/Jahidulhasanbd/Sports-Club/assets/126105121/bf63df3d-5666-49b3-a36e-133223db92b0">
 
 <img width="924" alt="Screenshot_3" src="https://github.com/Jahidulhasanbd/Sports-Club/assets/126105121/6361f071-d99e-42cc-9e3d-837bf7c10ca1">
