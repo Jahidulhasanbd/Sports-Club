@@ -1,0 +1,49 @@
+﻿@model IEnumerable<work_01.Models.ViewModels.SportsViewModel>
+@using PagedList
+@using PagedList.Mvc
+
+<table class="table table-bordered table-striped table-sm">
+    <thead class="table-primary">
+        <tr>
+            <th>@Html.DisplayNameFor(x => x.SportsName)</th>
+            <th>@Html.DisplayNameFor(x => x.PlayerCount)</th>
+            <th>
+               View
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(x => item.SportsName)</td>
+                <td>@Html.DisplayFor(x => item.PlayerCount)</td>
+                <td>
+                    <a href="#" data-pk="@item.SportsId" class="btn btn-secondary info" title="View Players"><i class="fa fa-list"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="d-flex justify-content-end">
+    @Html.PagedListPager(Model as IPagedList, page => Url.Action("MasterView", new { page,sort=ViewBag.CurrentSort,search=ViewBag.Search }),
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+        new AjaxOptions
+        {
+            InsertionMode=InsertionMode.Replace,
+            HttpMethod="POST",
+            UpdateTargetId= "holder",
+            OnComplete="onComplete"
+        }))
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+
+    </script>
+}
+@section styles{
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+}

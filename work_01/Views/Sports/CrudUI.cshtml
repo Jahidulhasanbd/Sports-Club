@@ -1,0 +1,36 @@
+﻿@model IEnumerable<work_01.Models.Sports>
+@using PagedList
+@using PagedList.Mvc
+<p class="d-flex justify-content-end">
+    @Html.ActionLink("Create New", "Create", "Sports", new { @class = "btn btn-primary " })
+</p>
+<table class="table table-bordered table-striped table-sm">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SportsName)
+        </th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SportsName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SportsId }, new { @class = "btn btn-success btn-sm" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.SportsId }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="d-flex justify-content-end">
+    @Html.PagedListPager(Model as IPagedList, page => Url.Action("Index", new { page }))
+</div>
+@section styles{
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+}

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<work_01.Models.Player>
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col">
+        <h2 class="display-4">Player List</h2>
+        <div class="d-flex justify-content-end mb-1">
+            @Html.ActionLink("Create New", "Create", "Players", new { @class = "btn btn-primary btn-sm" })
+        </div>
+        <table class="table table-bordered table-striped table-sm">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sports.SportsName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlayerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.JoinDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Grade)
+                </th>
+                <th>
+                    Picture
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sports.SportsName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlayerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JoinDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade)
+                    </td>
+                    <td>
+                        <img src="@Url.Content(item.PicturePath)" width="40" height="40" class="rounded-circle" />
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PlayerId }, new { @class = "btn btn-success btn-sm" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PlayerId }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </table>
+        <div class="d-flex justify-content-end">
+            @Html.PagedListPager(Model as IPagedList, page => Url.Action("Index", new { page}))
+        </div>
+    </div>
+</div>
+
+@section styles{
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+}
